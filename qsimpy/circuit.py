@@ -39,13 +39,26 @@ class QuantumCircuit:
                 full_gate = np.kron(full_gate, identity)
         return full_gate
 
-    def measure(self):
+    def measure_all(self):
         """Measure the quantum state, collapsing to one of the basis states."""
         probabilities = np.abs(self.state)**2
         outcome = np.random.choice(2**self.num_qubits, p=probabilities.flatten())
         self.state = np.zeros((2**self.num_qubits, 1))
         self.state[outcome] = 1
         return f"Measured state: |{bin(outcome)[2:].zfill(self.num_qubits)}>"
+    
+    def measure(self, measure_qubits):
+        """Measure the specified qubits, collapsing to one of the basis states."""
+        total_qubits = self.num_qubits
+        measured_states = []
+        for q in measure_qubits:
+            measured_states.append(q)
+        all_states = np.arange(2**total_qubits)
+        probabilities = np.abs(self.state)**2
+        outcome = np.random.choice(all_states, p=probabilities.flatten())
+        outcome_bin = bin(outcome)[2:].zfill(total_qubits)
+        measured_outcome = ''.join(outcome_bin[q] for q in measure_qubits)
+        return f"Measured state: |{measured_outcome}>"
 
     # Methods to apply gates
     def x(self, qubit):
