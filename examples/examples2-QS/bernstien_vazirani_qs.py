@@ -3,13 +3,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from collections import Counter
 
-# def apply_oracle_with_cnot(qc, secret_string):
-#     """Apply the Bernstein-Vazirani oracle using CNOT gates."""
-#     num_qubits = len(secret_string)
-#     # Add CNOT gates based on the secret string
-#     for i, bit in enumerate(secret_string):
-#         if bit == '0':
-#             qc.x(i)  # Apply CNOT with control qubit i and target qubit num_qubits
+
 def apply_oracle_with_cnot(qc, secret_string):
     """Apply the Bernstein-Vazirani oracle using CNOT gates."""
     num_qubits = len(secret_string)
@@ -26,7 +20,7 @@ def run_bv_algo_with_cnot(secret_string, runs):
         qc = QuantumSimulator(num_qubits, noise_strength=0.01)  # Create a quantum circuit with num_qubits
 
         # Apply X gate to the last qubit to set it to |1>
-        qc.x(num_qubits - 1)
+        qc.x(num_qubits-1)
 
         # Apply Hadamard to all qubits
         qc.hadamard(range(num_qubits))

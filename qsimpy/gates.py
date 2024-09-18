@@ -23,18 +23,18 @@ def hadamard_gate():
 
 def cnot_gate():
     """Creates the CNOT gate using Pauli gates."""
-    # I = np.eye(2)  # Identity matrix
-    # X = pauli_x_gate()  # Pauli-X gate
+    I = np.eye(2)  # Identity matrix
+    X = pauli_x_gate()  # Pauli-X gate
 
-    # # Construct the CNOT gate matrix
-    # cnot = np.kron(I, I)  # Start with identity matrix for a 2-qubit system
-    # cnot[2:, 2:] = X  # Apply X gate to the last 2x2 part (target qubit flip)
-    cnot = np.array([
-        [1, 0, 0, 0],
-        [0, 1, 0, 0],
-        [0, 0, 1, 0],
-        [0, 0, 0, -1]
-    ])
+    # Construct the CNOT gate matrix
+    cnot = np.kron(I, I)  # Start with identity matrix for a 2-qubit system
+    cnot[2:, 2:] = X  # Apply X gate to the last 2x2 part (target qubit flip)
+    # cnot = np.array([
+    #     [1, 0, 0, 0],
+    #     [0, 1, 0, 0],
+    #     [0, 0, 1, 0],
+    #     [0, 0, 0, -1]
+    # ])
 
     return cnot
 
